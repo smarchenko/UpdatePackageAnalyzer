@@ -1,0 +1,52 @@
+<changeItemCommand>
+  <collisionbehavior></collisionbehavior>
+  <databasename>core</databasename>
+  <itemid>{4434EFE0-C9A5-4F01-B9D5-B978E8609B5A}</itemid>
+  <itempath>/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Advanced/Analyze/Profiles</itempath>
+  <parent>{00000000-0000-0000-0000-000000000000}</parent>
+  <commands>
+    <changeVersionCommand>
+      <collisionbehavior></collisionbehavior>
+      <language>da</language>
+      <version>1</version>
+      <commands>
+        <addFieldCommand>
+          <collisionbehavior></collisionbehavior>
+          <fieldid>{C8F93AFE-BFD4-4E8F-9C61-152559854661}</fieldid>
+          <fieldname>__Valid from test</fieldname>
+          <field>
+            <fieldkey>__valid from</fieldkey>
+            <fieldvalue>20060227T162519</fieldvalue>
+          </field>
+        </addFieldCommand>
+        <addFieldCommand>
+          <collisionbehavior></collisionbehavior>
+          <fieldid>{3E431DE1-525E-47A3-B6B0-1CCBEC3A8C98}</fieldid>
+          <fieldname>__Workflow state</fieldname>
+          <field>
+            <fieldkey>__workflow state</fieldkey>
+            <fieldvalue></fieldvalue>
+          </field>
+        </addFieldCommand>
+      </commands>
+    </changeVersionCommand>
+    <changeVersionCommand>
+      <collisionbehavior></collisionbehavior>
+      <language>en</language>
+      <version>1</version>
+      <commands>
+        <changeFieldCommand>
+          <collisionbehavior></collisionbehavior>
+          <fieldid>{C8F93AFE-BFD4-4E8F-9C61-152559854661}</fieldid>
+          <fieldname>__Valid from</fieldname>
+          <changes>
+            <changeentry name="FieldValue">
+              <oldvalue>20060227T162519</oldvalue>
+              <newvalue>20060227T000000</newvalue>
+            </changeentry>
+          </changes>
+        </changeFieldCommand>
+      </commands>
+    </changeVersionCommand>
+  </commands>
+</changeItemCommand>
