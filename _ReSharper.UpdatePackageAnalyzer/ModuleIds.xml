@@ -1,5 +1,0 @@
-<Modules>
-  <Module PersistentId="87484D6F-CEF9-4B0C-B5B1-DA347ADF9B8D" ModuleId="UpdatePackageAnalyzer" />
-  <Module PersistentId="d:Miscellaneous Files" ModuleId="Sitecore.Update" />
-  <Module PersistentId="Sitecore.Update, Version=6.0.0.0, Culture=neutral" ModuleId="Sitecore.Update_1" />
-</Modules>
