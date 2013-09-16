@@ -379,9 +379,40 @@ namespace UpdatePackageAnalyzer
     {
       IList<ICommand> commands = new List<ICommand>(this.diff.Commands);
       this.LoadFilters(commands);
+      if (commands.Count > 0)
+      {
+        this.RenderPackageOverview();
+      }
+
       commands = this.GetFilteredCommands(commands);
       this.LoadCommands(commands, !showInList);
       this.editReadMeToolStripMenuItem.Enabled = false;
+    }
+
+    protected void RenderPackageOverview()
+    {
+      if (this.diff == null)
+      {
+        return;
+      }
+
+      if (!string.IsNullOrEmpty(this.openFileDialog1.FileName))
+      {
+        this.PackageName.Text = Path.GetFileName(this.openFileDialog1.FileName);
+      }
+      else
+      {
+        this.PackageName.Text = "Diff file";
+      }
+
+      if (!string.IsNullOrEmpty(this.diff.Title))
+      {
+        this.PackageDescription.Text = this.diff.Title;
+      }
+
+      this.TotalCommandsCount.Text = this.diff.Commands.Count.ToString();
+
+      this.tabControl1.SelectTab(this.PackageOverview);
     }
 
     private void loadPackageToolStripMenuItem_Click(object sender, EventArgs e)

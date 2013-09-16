@@ -37,6 +37,7 @@
       this.loadDiffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.loadDiffToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
       this.loadPackageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.editReadMeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.splitContainer3 = new System.Windows.Forms.SplitContainer();
       this.CommandsTreeView = new System.Windows.Forms.TreeView();
@@ -58,7 +59,14 @@
       this.ApplyChanges = new System.Windows.Forms.Button();
       this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-      this.editReadMeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.PackageOverview = new System.Windows.Forms.TabPage();
+      this.label1 = new System.Windows.Forms.Label();
+      this.PackageName = new System.Windows.Forms.Label();
+      this.label2 = new System.Windows.Forms.Label();
+      this.PackageDescription = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
+      this.TotalCommandsCount = new System.Windows.Forms.Label();
+      this.CommandsOverview = new System.Windows.Forms.DataGridView();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
@@ -79,6 +87,8 @@
       this.splitContainer4.Panel1.SuspendLayout();
       this.splitContainer4.Panel2.SuspendLayout();
       this.splitContainer4.SuspendLayout();
+      this.PackageOverview.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).BeginInit();
       this.SuspendLayout();
       // 
       // splitContainer1
@@ -153,7 +163,7 @@
             this.loadDiffToolStripMenuItem1,
             this.loadPackageToolStripMenuItem});
       this.loadDiffToolStripMenuItem.Name = "loadDiffToolStripMenuItem";
-      this.loadDiffToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.loadDiffToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
       this.loadDiffToolStripMenuItem.Text = "Load";
       // 
       // loadDiffToolStripMenuItem1
@@ -169,6 +179,14 @@
       this.loadPackageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.loadPackageToolStripMenuItem.Text = "Load Package";
       this.loadPackageToolStripMenuItem.Click += new System.EventHandler(this.loadPackageToolStripMenuItem_Click);
+      // 
+      // editReadMeToolStripMenuItem
+      // 
+      this.editReadMeToolStripMenuItem.Enabled = false;
+      this.editReadMeToolStripMenuItem.Name = "editReadMeToolStripMenuItem";
+      this.editReadMeToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+      this.editReadMeToolStripMenuItem.Text = "Edit ReadMe";
+      this.editReadMeToolStripMenuItem.Click += new System.EventHandler(this.editReadMeToolStripMenuItem_Click);
       // 
       // splitContainer2
       // 
@@ -215,8 +233,8 @@
       this.CommandsTreeView.Name = "CommandsTreeView";
       this.CommandsTreeView.Size = new System.Drawing.Size(423, 487);
       this.CommandsTreeView.TabIndex = 1;
-      this.CommandsTreeView.DoubleClick += new System.EventHandler(this.CommandsTreeView_DoubleClick);
       this.CommandsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.CommandsTreeView_AfterSelect);
+      this.CommandsTreeView.DoubleClick += new System.EventHandler(this.CommandsTreeView_DoubleClick);
       // 
       // ApplyFiltersBtn
       // 
@@ -231,9 +249,9 @@
       // 
       // FilterTabControl
       // 
-      this.FilterTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                  | System.Windows.Forms.AnchorStyles.Left)
-                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.FilterTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.FilterTabControl.Controls.Add(this.CommandTypesPage);
       this.FilterTabControl.Controls.Add(this.DatabaseFiltersTab);
       this.FilterTabControl.Location = new System.Drawing.Point(3, 2);
@@ -259,7 +277,7 @@
       this.CommandTypesCheckedListBox.FormattingEnabled = true;
       this.CommandTypesCheckedListBox.Location = new System.Drawing.Point(3, 3);
       this.CommandTypesCheckedListBox.Name = "CommandTypesCheckedListBox";
-      this.CommandTypesCheckedListBox.Size = new System.Drawing.Size(334, 124);
+      this.CommandTypesCheckedListBox.Size = new System.Drawing.Size(334, 127);
       this.CommandTypesCheckedListBox.TabIndex = 0;
       // 
       // DatabaseFiltersTab
@@ -279,7 +297,7 @@
       this.DatabaseFilters.FormattingEnabled = true;
       this.DatabaseFilters.Location = new System.Drawing.Point(3, 3);
       this.DatabaseFilters.Name = "DatabaseFilters";
-      this.DatabaseFilters.Size = new System.Drawing.Size(334, 124);
+      this.DatabaseFilters.Size = new System.Drawing.Size(334, 127);
       this.DatabaseFilters.TabIndex = 0;
       // 
       // StatusStrip
@@ -309,6 +327,7 @@
       // 
       this.tabControl1.Controls.Add(this.tabPage1);
       this.tabControl1.Controls.Add(this.tabPage2);
+      this.tabControl1.Controls.Add(this.PackageOverview);
       this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tabControl1.Location = new System.Drawing.Point(0, 0);
       this.tabControl1.Name = "tabControl1";
@@ -388,13 +407,86 @@
       // 
       this.openFileDialog1.FileName = "openFileDialog1";
       // 
-      // editReadMeToolStripMenuItem
+      // PackageOverview
       // 
-      this.editReadMeToolStripMenuItem.Enabled = false;
-      this.editReadMeToolStripMenuItem.Name = "editReadMeToolStripMenuItem";
-      this.editReadMeToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
-      this.editReadMeToolStripMenuItem.Text = "Edit ReadMe";
-      this.editReadMeToolStripMenuItem.Click += new System.EventHandler(this.editReadMeToolStripMenuItem_Click);
+      this.PackageOverview.Controls.Add(this.CommandsOverview);
+      this.PackageOverview.Controls.Add(this.TotalCommandsCount);
+      this.PackageOverview.Controls.Add(this.label4);
+      this.PackageOverview.Controls.Add(this.PackageDescription);
+      this.PackageOverview.Controls.Add(this.label2);
+      this.PackageOverview.Controls.Add(this.PackageName);
+      this.PackageOverview.Controls.Add(this.label1);
+      this.PackageOverview.Location = new System.Drawing.Point(4, 22);
+      this.PackageOverview.Name = "PackageOverview";
+      this.PackageOverview.Size = new System.Drawing.Size(944, 651);
+      this.PackageOverview.TabIndex = 2;
+      this.PackageOverview.Text = "Package Overview";
+      this.PackageOverview.UseVisualStyleBackColor = true;
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.label1.Location = new System.Drawing.Point(16, 11);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(95, 13);
+      this.label1.TabIndex = 0;
+      this.label1.Text = "Package name:";
+      // 
+      // PackageName
+      // 
+      this.PackageName.AutoSize = true;
+      this.PackageName.Location = new System.Drawing.Point(128, 11);
+      this.PackageName.Name = "PackageName";
+      this.PackageName.Size = new System.Drawing.Size(33, 13);
+      this.PackageName.TabIndex = 1;
+      this.PackageName.Text = "None";
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.label2.Location = new System.Drawing.Point(16, 33);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(75, 13);
+      this.label2.TabIndex = 2;
+      this.label2.Text = "Description:";
+      // 
+      // PackageDescription
+      // 
+      this.PackageDescription.AutoSize = true;
+      this.PackageDescription.Location = new System.Drawing.Point(128, 33);
+      this.PackageDescription.Name = "PackageDescription";
+      this.PackageDescription.Size = new System.Drawing.Size(33, 13);
+      this.PackageDescription.TabIndex = 3;
+      this.PackageDescription.Text = "None";
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.label4.Location = new System.Drawing.Point(16, 57);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(104, 13);
+      this.label4.TabIndex = 4;
+      this.label4.Text = "Total Commands:";
+      // 
+      // TotalCommandsCount
+      // 
+      this.TotalCommandsCount.AutoSize = true;
+      this.TotalCommandsCount.Location = new System.Drawing.Point(128, 57);
+      this.TotalCommandsCount.Name = "TotalCommandsCount";
+      this.TotalCommandsCount.Size = new System.Drawing.Size(13, 13);
+      this.TotalCommandsCount.TabIndex = 5;
+      this.TotalCommandsCount.Text = "0";
+      // 
+      // CommandsOverview
+      // 
+      this.CommandsOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.CommandsOverview.Location = new System.Drawing.Point(19, 73);
+      this.CommandsOverview.Name = "CommandsOverview";
+      this.CommandsOverview.Size = new System.Drawing.Size(431, 150);
+      this.CommandsOverview.TabIndex = 6;
       // 
       // MainForm
       // 
@@ -428,6 +520,9 @@
       this.splitContainer4.Panel1.ResumeLayout(false);
       this.splitContainer4.Panel2.ResumeLayout(false);
       this.splitContainer4.ResumeLayout(false);
+      this.PackageOverview.ResumeLayout(false);
+      this.PackageOverview.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -465,6 +560,14 @@
     private System.Windows.Forms.ToolStripMenuItem loadPackageToolStripMenuItem;
     private System.Windows.Forms.OpenFileDialog openFileDialog1;
     private System.Windows.Forms.ToolStripMenuItem editReadMeToolStripMenuItem;
+    private System.Windows.Forms.TabPage PackageOverview;
+    private System.Windows.Forms.Label PackageName;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Label PackageDescription;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Label TotalCommandsCount;
+    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.DataGridView CommandsOverview;
 
   }
 }
