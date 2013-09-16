@@ -82,7 +82,17 @@ namespace UpdatePackageAnalyzer
         return;
       }
 
-      Dictionary<string, int> types = new Dictionary<string, int>();
+      Dictionary<string, int> types = this.GroupByType(commands);
+
+      foreach (string key in types.Keys)
+      {
+        this.CommandTypesCheckedListBox.Items.Add(key, true);
+      }
+    }
+
+    protected Dictionary<string, int> GroupByType(IList<ICommand> commands)
+    {
+      var types = new Dictionary<string, int>();
       foreach (var command in commands)
       {
         if (!types.ContainsKey(command.CommandPrefix))
@@ -93,10 +103,7 @@ namespace UpdatePackageAnalyzer
         types[command.CommandPrefix]++;
       }
 
-      foreach (string key in types.Keys)
-      {
-        this.CommandTypesCheckedListBox.Items.Add(key, true);
-      }
+      return types;
     }
 
     protected string GetCommandDatabaseName(ICommand command)
@@ -411,8 +418,30 @@ namespace UpdatePackageAnalyzer
       }
 
       this.TotalCommandsCount.Text = this.diff.Commands.Count.ToString();
+      this.RenderCommandsOverwiew();
 
       this.tabControl1.SelectTab(this.PackageOverview);
+    }
+
+    protected void RenderCommandsOverwiew()
+    {
+      if (this.diff == null)
+      {
+        return;
+      }
+
+      var types = this.GroupByType(this.diff.Commands);
+      var commandTypes = types.Select((entry) => new CommandType { CommandTypeName = entry.Key, CommandCount = entry.Value }).ToList();
+      this.CommandsOverview.DataSource = commandTypes;
+      this.CommandsOverview.AutoSize = true;
+      this.CommandsOverview.Columns[0].HeaderText = "Command type";
+      this.CommandsOverview.Columns[1].HeaderText = "Commands count";
+    }
+
+    protected class CommandType
+    {
+      public string CommandTypeName { get; set; }
+      public int CommandCount { get; set; }
     }
 
     private void loadPackageToolStripMenuItem_Click(object sender, EventArgs e)

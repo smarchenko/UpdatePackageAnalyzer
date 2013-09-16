@@ -67,6 +67,8 @@
       this.label4 = new System.Windows.Forms.Label();
       this.TotalCommandsCount = new System.Windows.Forms.Label();
       this.CommandsOverview = new System.Windows.Forms.DataGridView();
+      this.panel1 = new System.Windows.Forms.Panel();
+      this.label5 = new System.Windows.Forms.Label();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
@@ -89,6 +91,7 @@
       this.splitContainer4.SuspendLayout();
       this.PackageOverview.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).BeginInit();
+      this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
       // splitContainer1
@@ -114,6 +117,7 @@
       // 
       // SearchBtn
       // 
+      this.SearchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.SearchBtn.Location = new System.Drawing.Point(1292, 30);
       this.SearchBtn.Name = "SearchBtn";
       this.SearchBtn.Size = new System.Drawing.Size(75, 23);
@@ -133,6 +137,8 @@
       // 
       // SearchText
       // 
+      this.SearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.SearchText.Location = new System.Drawing.Point(77, 30);
       this.SearchText.Name = "SearchText";
       this.SearchText.Size = new System.Drawing.Size(1202, 20);
@@ -409,6 +415,7 @@
       // 
       // PackageOverview
       // 
+      this.PackageOverview.Controls.Add(this.panel1);
       this.PackageOverview.Controls.Add(this.CommandsOverview);
       this.PackageOverview.Controls.Add(this.TotalCommandsCount);
       this.PackageOverview.Controls.Add(this.label4);
@@ -482,11 +489,46 @@
       // 
       // CommandsOverview
       // 
-      this.CommandsOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.CommandsOverview.AllowUserToAddRows = false;
+      this.CommandsOverview.AllowUserToDeleteRows = false;
+      this.CommandsOverview.AllowUserToResizeColumns = false;
+      this.CommandsOverview.AllowUserToResizeRows = false;
+      this.CommandsOverview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.CommandsOverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+      this.CommandsOverview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+      this.CommandsOverview.BackgroundColor = System.Drawing.SystemColors.Window;
+      this.CommandsOverview.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.CommandsOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+      this.CommandsOverview.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
       this.CommandsOverview.Location = new System.Drawing.Point(19, 73);
+      this.CommandsOverview.MultiSelect = false;
       this.CommandsOverview.Name = "CommandsOverview";
-      this.CommandsOverview.Size = new System.Drawing.Size(431, 150);
+      this.CommandsOverview.ReadOnly = true;
+      this.CommandsOverview.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+      this.CommandsOverview.Size = new System.Drawing.Size(917, 150);
       this.CommandsOverview.TabIndex = 6;
+      // 
+      // panel1
+      // 
+      this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.panel1.Controls.Add(this.label5);
+      this.panel1.Location = new System.Drawing.Point(3, 244);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(944, 407);
+      this.panel1.TabIndex = 7;
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.label5.Location = new System.Drawing.Point(3, 11);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(212, 20);
+      this.label5.TabIndex = 0;
+      this.label5.Text = "List of potential problems";
       // 
       // MainForm
       // 
@@ -523,6 +565,8 @@
       this.PackageOverview.ResumeLayout(false);
       this.PackageOverview.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).EndInit();
+      this.panel1.ResumeLayout(false);
+      this.panel1.PerformLayout();
       this.ResumeLayout(false);
 
     }
@@ -568,6 +612,8 @@
     private System.Windows.Forms.Label TotalCommandsCount;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.DataGridView CommandsOverview;
+    private System.Windows.Forms.Panel panel1;
+    private System.Windows.Forms.Label label5;
 
   }
 }
