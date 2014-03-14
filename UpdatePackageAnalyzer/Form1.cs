@@ -35,6 +35,7 @@ namespace UpdatePackageAnalyzer
     private bool showInList = true;
     private ICommand selectedCommand = null;
     private string diffFilePath = null;
+    private Dictionary<string, ICommandFilter> customFilters;
 
     public MainForm()
     {
@@ -45,6 +46,20 @@ namespace UpdatePackageAnalyzer
     {
       this.LoadCommandTypeFilters(commands);
       this.LoadDatabaseFilters(commands);
+      this.LoadCustomFilters(commands);
+    }
+
+    protected void LoadCustomFilters(IList<ICommand> commands)
+    {
+      this.customFilters = new Dictionary<string, ICommandFilter>();
+      this.customFilters.Add("Filter Translation changes", new TranslationChangeFilter());
+      this.customFilters.Add("Filter Dictionary commands", new DictionaryCommandFilter());
+
+      this.CustomFilterList.Items.Clear();
+      foreach (string text in this.customFilters.Keys)
+      {
+        this.CustomFilterList.Items.Add(text);
+      }
     }
 
     protected void LoadDatabaseFilters(IList<ICommand> commands)
@@ -141,6 +156,12 @@ namespace UpdatePackageAnalyzer
           {
             if (string.IsNullOrEmpty(searchText) || this.GetCommandText(command).ToLower().Contains(searchText.ToLower()))
             {
+              var c = this.FilterByCustomFilter(command);
+              if (c == null || c.IsEmpty)
+              {
+                continue;
+              }
+
               result.Add(command);
             }
           }
@@ -148,6 +169,82 @@ namespace UpdatePackageAnalyzer
       }
 
       return result;
+    }
+
+    protected ICommand FilterByCustomFilter(ICommand command)
+    {
+      var c = command;
+      foreach (string text in this.CustomFilterList.CheckedItems)
+      {
+        var filter = this.customFilters[text];
+        c = filter.FilterCommand(c);
+
+        if (c == null || c.IsEmpty)
+        {
+          return null;
+        }
+      }
+
+      return command;
+    }
+
+    private class DictionaryCommandFilter : ICommandFilter
+    {
+      public ICommand FilterCommand(ICommand command)
+      {
+        if (!(command is BaseItemCommand))
+        {
+          return command;
+        }
+
+        var itemCommand = command as BaseItemCommand;
+        if (itemCommand.ItemPath.StartsWith(
+          "/sitecore/system/Dictionary/", StringComparison.InvariantCultureIgnoreCase))
+        {
+          return null;
+        }
+
+        return command;
+      }
+
+      public ICommandFilter Clone()
+      {
+        return new DictionaryCommandFilter();
+      }
+    }
+
+    private class TranslationChangeFilter : ICommandFilter
+    {
+      public ICommand FilterCommand(ICommand command)
+      {
+        if (!(command is ChangeItemCommand))
+        {
+          return command;
+        }
+
+        var changeItemCommand = command as ChangeItemCommand;
+
+        foreach (var c in changeItemCommand.Commands)
+        {
+          if (!(c is AddVersionCommand))
+          {
+            return command;
+          }
+
+          var changeVersionCommand = c as AddVersionCommand;
+          if (string.Compare(changeVersionCommand.Language, "en", true) == 0)
+          {
+            return command;
+          }
+        }
+
+        return null;
+      }
+
+      public ICommandFilter Clone()
+      {
+        return new TranslationChangeFilter();
+      }
     }
 
     protected void LoadCommands(IList<ICommand> commands, bool treeView)

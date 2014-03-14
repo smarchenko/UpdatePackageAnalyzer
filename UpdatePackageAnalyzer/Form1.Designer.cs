@@ -57,18 +57,20 @@
       this.splitContainer4 = new System.Windows.Forms.SplitContainer();
       this.CommandContent = new System.Windows.Forms.RichTextBox();
       this.ApplyChanges = new System.Windows.Forms.Button();
-      this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-      this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.PackageOverview = new System.Windows.Forms.TabPage();
-      this.label1 = new System.Windows.Forms.Label();
-      this.PackageName = new System.Windows.Forms.Label();
-      this.label2 = new System.Windows.Forms.Label();
-      this.PackageDescription = new System.Windows.Forms.Label();
-      this.label4 = new System.Windows.Forms.Label();
-      this.TotalCommandsCount = new System.Windows.Forms.Label();
-      this.CommandsOverview = new System.Windows.Forms.DataGridView();
       this.panel1 = new System.Windows.Forms.Panel();
       this.label5 = new System.Windows.Forms.Label();
+      this.CommandsOverview = new System.Windows.Forms.DataGridView();
+      this.TotalCommandsCount = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
+      this.PackageDescription = new System.Windows.Forms.Label();
+      this.label2 = new System.Windows.Forms.Label();
+      this.PackageName = new System.Windows.Forms.Label();
+      this.label1 = new System.Windows.Forms.Label();
+      this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+      this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+      this.CustomFilters = new System.Windows.Forms.TabPage();
+      this.CustomFilterList = new System.Windows.Forms.CheckedListBox();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
@@ -90,8 +92,9 @@
       this.splitContainer4.Panel2.SuspendLayout();
       this.splitContainer4.SuspendLayout();
       this.PackageOverview.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).BeginInit();
       this.panel1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).BeginInit();
+      this.CustomFilters.SuspendLayout();
       this.SuspendLayout();
       // 
       // splitContainer1
@@ -260,6 +263,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.FilterTabControl.Controls.Add(this.CommandTypesPage);
       this.FilterTabControl.Controls.Add(this.DatabaseFiltersTab);
+      this.FilterTabControl.Controls.Add(this.CustomFilters);
       this.FilterTabControl.Location = new System.Drawing.Point(3, 2);
       this.FilterTabControl.Name = "FilterTabControl";
       this.FilterTabControl.SelectedIndex = 0;
@@ -409,10 +413,6 @@
       this.ApplyChanges.UseVisualStyleBackColor = true;
       this.ApplyChanges.Click += new System.EventHandler(this.ApplyChanges_Click);
       // 
-      // openFileDialog1
-      // 
-      this.openFileDialog1.FileName = "openFileDialog1";
-      // 
       // PackageOverview
       // 
       this.PackageOverview.Controls.Add(this.panel1);
@@ -430,62 +430,26 @@
       this.PackageOverview.Text = "Package Overview";
       this.PackageOverview.UseVisualStyleBackColor = true;
       // 
-      // label1
+      // panel1
       // 
-      this.label1.AutoSize = true;
-      this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.label1.Location = new System.Drawing.Point(16, 11);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(95, 13);
-      this.label1.TabIndex = 0;
-      this.label1.Text = "Package name:";
+      this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.panel1.Controls.Add(this.label5);
+      this.panel1.Location = new System.Drawing.Point(3, 244);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(944, 407);
+      this.panel1.TabIndex = 7;
       // 
-      // PackageName
+      // label5
       // 
-      this.PackageName.AutoSize = true;
-      this.PackageName.Location = new System.Drawing.Point(128, 11);
-      this.PackageName.Name = "PackageName";
-      this.PackageName.Size = new System.Drawing.Size(33, 13);
-      this.PackageName.TabIndex = 1;
-      this.PackageName.Text = "None";
-      // 
-      // label2
-      // 
-      this.label2.AutoSize = true;
-      this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.label2.Location = new System.Drawing.Point(16, 33);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(75, 13);
-      this.label2.TabIndex = 2;
-      this.label2.Text = "Description:";
-      // 
-      // PackageDescription
-      // 
-      this.PackageDescription.AutoSize = true;
-      this.PackageDescription.Location = new System.Drawing.Point(128, 33);
-      this.PackageDescription.Name = "PackageDescription";
-      this.PackageDescription.Size = new System.Drawing.Size(33, 13);
-      this.PackageDescription.TabIndex = 3;
-      this.PackageDescription.Text = "None";
-      // 
-      // label4
-      // 
-      this.label4.AutoSize = true;
-      this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.label4.Location = new System.Drawing.Point(16, 57);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(104, 13);
-      this.label4.TabIndex = 4;
-      this.label4.Text = "Total Commands:";
-      // 
-      // TotalCommandsCount
-      // 
-      this.TotalCommandsCount.AutoSize = true;
-      this.TotalCommandsCount.Location = new System.Drawing.Point(128, 57);
-      this.TotalCommandsCount.Name = "TotalCommandsCount";
-      this.TotalCommandsCount.Size = new System.Drawing.Size(13, 13);
-      this.TotalCommandsCount.TabIndex = 5;
-      this.TotalCommandsCount.Text = "0";
+      this.label5.AutoSize = true;
+      this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.label5.Location = new System.Drawing.Point(3, 11);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(212, 20);
+      this.label5.TabIndex = 0;
+      this.label5.Text = "List of potential problems";
       // 
       // CommandsOverview
       // 
@@ -509,26 +473,87 @@
       this.CommandsOverview.Size = new System.Drawing.Size(917, 150);
       this.CommandsOverview.TabIndex = 6;
       // 
-      // panel1
+      // TotalCommandsCount
       // 
-      this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.panel1.Controls.Add(this.label5);
-      this.panel1.Location = new System.Drawing.Point(3, 244);
-      this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(944, 407);
-      this.panel1.TabIndex = 7;
+      this.TotalCommandsCount.AutoSize = true;
+      this.TotalCommandsCount.Location = new System.Drawing.Point(128, 57);
+      this.TotalCommandsCount.Name = "TotalCommandsCount";
+      this.TotalCommandsCount.Size = new System.Drawing.Size(13, 13);
+      this.TotalCommandsCount.TabIndex = 5;
+      this.TotalCommandsCount.Text = "0";
       // 
-      // label5
+      // label4
       // 
-      this.label5.AutoSize = true;
-      this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.label5.Location = new System.Drawing.Point(3, 11);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(212, 20);
-      this.label5.TabIndex = 0;
-      this.label5.Text = "List of potential problems";
+      this.label4.AutoSize = true;
+      this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.label4.Location = new System.Drawing.Point(16, 57);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(104, 13);
+      this.label4.TabIndex = 4;
+      this.label4.Text = "Total Commands:";
+      // 
+      // PackageDescription
+      // 
+      this.PackageDescription.AutoSize = true;
+      this.PackageDescription.Location = new System.Drawing.Point(128, 33);
+      this.PackageDescription.Name = "PackageDescription";
+      this.PackageDescription.Size = new System.Drawing.Size(33, 13);
+      this.PackageDescription.TabIndex = 3;
+      this.PackageDescription.Text = "None";
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.label2.Location = new System.Drawing.Point(16, 33);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(75, 13);
+      this.label2.TabIndex = 2;
+      this.label2.Text = "Description:";
+      // 
+      // PackageName
+      // 
+      this.PackageName.AutoSize = true;
+      this.PackageName.Location = new System.Drawing.Point(128, 11);
+      this.PackageName.Name = "PackageName";
+      this.PackageName.Size = new System.Drawing.Size(33, 13);
+      this.PackageName.TabIndex = 1;
+      this.PackageName.Text = "None";
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.label1.Location = new System.Drawing.Point(16, 11);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(95, 13);
+      this.label1.TabIndex = 0;
+      this.label1.Text = "Package name:";
+      // 
+      // openFileDialog1
+      // 
+      this.openFileDialog1.FileName = "openFileDialog1";
+      // 
+      // CustomFilters
+      // 
+      this.CustomFilters.Controls.Add(this.CustomFilterList);
+      this.CustomFilters.Location = new System.Drawing.Point(4, 22);
+      this.CustomFilters.Name = "CustomFilters";
+      this.CustomFilters.Size = new System.Drawing.Size(340, 133);
+      this.CustomFilters.TabIndex = 2;
+      this.CustomFilters.Text = "Custom";
+      this.CustomFilters.UseVisualStyleBackColor = true;
+      // 
+      // CustomFilterList
+      // 
+      this.CustomFilterList.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.CustomFilterList.FormattingEnabled = true;
+      this.CustomFilterList.Items.AddRange(new object[] {
+            "Filter Translation changes"});
+      this.CustomFilterList.Location = new System.Drawing.Point(0, 0);
+      this.CustomFilterList.Name = "CustomFilterList";
+      this.CustomFilterList.Size = new System.Drawing.Size(340, 133);
+      this.CustomFilterList.TabIndex = 0;
       // 
       // MainForm
       // 
@@ -564,9 +589,10 @@
       this.splitContainer4.ResumeLayout(false);
       this.PackageOverview.ResumeLayout(false);
       this.PackageOverview.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).EndInit();
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).EndInit();
+      this.CustomFilters.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -614,6 +640,8 @@
     private System.Windows.Forms.DataGridView CommandsOverview;
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.TabPage CustomFilters;
+    private System.Windows.Forms.CheckedListBox CustomFilterList;
 
   }
 }
