@@ -29,6 +29,8 @@ namespace UpdatePackageAnalyzer
   using Sitecore.Update.Interfaces;
   using Sitecore.Update.Utils;
 
+  using UpdatePackageAnalyzer.PackageAnalyzers;
+
   public partial class MainForm : Form
   {
     private DiffInfo diff = null;
@@ -36,6 +38,7 @@ namespace UpdatePackageAnalyzer
     private ICommand selectedCommand = null;
     private string diffFilePath = null;
     private Dictionary<string, ICommandFilter> customFilters;
+    private List<PackageAnalyzer> analyzers;
 
     public MainForm()
     {
@@ -47,6 +50,13 @@ namespace UpdatePackageAnalyzer
       this.LoadCommandTypeFilters(commands);
       this.LoadDatabaseFilters(commands);
       this.LoadCustomFilters(commands);
+      LoadPackageAnalyzers(commands);
+    }
+
+    protected void LoadPackageAnalyzers(IList<ICommand> commands)
+    {
+      this.analyzers = new List<PackageAnalyzer>();
+      this.analyzers.Add(new ConfigFileChangesAnalyzer());
     }
 
     protected void LoadCustomFilters(IList<ICommand> commands)
@@ -265,36 +275,7 @@ namespace UpdatePackageAnalyzer
 
     protected void LoadCommandList(IList<ICommand> commands)
     {
-      this.CommandsTreeView.Nodes.Clear();
-      foreach (ICommand command in commands)
-      {
-        var node = this.GetNode(command);
-        node.Text = string.Format("{0}: {1}", command.CommandPrefix, GetCommandPath(command));
-        node.ToolTipText = command.Description;
-        this.CommandsTreeView.Nodes.Add(node);
-      }
-    }
-
-    protected string GetCommandPath(ICommand command)
-    {
-      if(command is BaseItemCommand)
-      {
-        return (command as BaseItemCommand).ItemPath + " " + (command as BaseItemCommand).ItemID;
-      }
-
-      return command.EntityPath;
-    }
-
-    protected TreeNode GetNode(ICommand command)
-    {
-      var node = new TreeNode();
-      node.Tag = this.GetCommandUniqueId(command);
-      return node;
-    }
-
-    private string GetCommandUniqueId(ICommand command)
-    {
-      return string.Format("{2}_{1}_{0}", command.EntityID, command.CommandPrefix, command is BaseItemCommand ? (command as BaseItemCommand).DatabaseName : "filsystem");
+      TreeViewHelper.InitializeTreeView(this.CommandsTreeView, commands);
     }
 
     private XmlWriter GetWriter(Stream stream)
@@ -306,16 +287,16 @@ namespace UpdatePackageAnalyzer
       return XmlWriter.Create(stream, settings);
     }
 
-   private XmlReader GetReader(Stream stream)
-   {
-     var settings = new XmlReaderSettings
-     {
-       IgnoreWhitespace = true,
-       ConformanceLevel = ConformanceLevel.Fragment
-     };
+    private XmlReader GetReader(Stream stream)
+    {
+      var settings = new XmlReaderSettings
+      {
+        IgnoreWhitespace = true,
+        ConformanceLevel = ConformanceLevel.Fragment
+      };
 
-     return XmlReader.Create(stream, settings);
-   }
+      return XmlReader.Create(stream, settings);
+    }
 
     private void ApplyFiltersBtn_Click(object sender, EventArgs e)
     {
@@ -350,7 +331,7 @@ namespace UpdatePackageAnalyzer
       ICommand command = null;
       foreach (ICommand c in this.diff.Commands)
       {
-        if (string.Compare(this.GetCommandUniqueId(c), e.Node.Tag.ToString(), true) == 0)
+        if (string.Compare(TreeViewHelper.GetCommandUniqueId(c), e.Node.Tag.ToString(), true) == 0)
         {
           command = c;
           break;
@@ -429,19 +410,19 @@ namespace UpdatePackageAnalyzer
           command = SerializationCommandFactory.DeserializeCommand(reader, context);
         }
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         MessageBox.Show("Invalid command text format. Cannot deserialize the command.", "Desirizalization Error");
         return;
       }
 
-      if(command == null)
+      if (command == null)
       {
         MessageBox.Show("Invalid command text format. Cannot deserialize the command.", "Desirizalization Error");
         return;
       }
 
-      if(this.selectedCommand == null)
+      if (this.selectedCommand == null)
       {
         MessageBox.Show("Hm... Command to be updated not found.", "Strange error.");
         return;
@@ -516,8 +497,33 @@ namespace UpdatePackageAnalyzer
 
       this.TotalCommandsCount.Text = this.diff.Commands.Count.ToString();
       this.RenderCommandsOverwiew();
+      this.RenderPackageProblems();
 
       this.tabControl1.SelectTab(this.PackageOverview);
+    }
+
+    protected void RenderPackageProblems()
+    {
+      if (this.diff == null || this.analyzers == null)
+      {
+        return;
+      }
+
+      List<ProblemDescriptor> problems = new List<ProblemDescriptor>();
+      foreach (var analyzer in this.analyzers)
+      {
+        problems.AddRange(analyzer.Scan(this.diff.Commands));
+      }
+
+      if (problems.Count > 0)
+      {
+        foreach (var problem in problems)
+        {
+          var renderer = new PackageProblemRenderer(problem);
+          renderer.Dock = DockStyle.Top;
+          this.problemsPanel.Controls.Add(renderer);
+        }
+      }
     }
 
     protected void RenderCommandsOverwiew()
@@ -617,7 +623,7 @@ namespace UpdatePackageAnalyzer
 
     private void editReadMeToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      if(this.diff == null)
+      if (this.diff == null)
       {
         MessageBox.Show("Diff is not loaded.", "Invalid Operation.");
         return;
@@ -625,7 +631,7 @@ namespace UpdatePackageAnalyzer
 
       var editorDialog = new ReadMeEditor(this.diff);
 
-      if(editorDialog.ShowDialog() == DialogResult.OK)
+      if (editorDialog.ShowDialog() == DialogResult.OK)
       {
         this.diff.Serialize(this.diffFilePath);
       }

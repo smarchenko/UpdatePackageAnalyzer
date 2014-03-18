@@ -83,13 +83,23 @@
     <Compile Include="PackageAnalyzers\ConfigFileChangesAnalyzer.cs" />
     <Compile Include="PackageAnalyzers\PackageAnalyzer.cs" />
     <Compile Include="PackageAnalyzers\ProblemDescriptor.cs" />
+    <Compile Include="PackageProblemRenderer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PackageProblemRenderer.Designer.cs">
+      <DependentUpon>PackageProblemRenderer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreeViewHelper.cs" />
     <EmbeddedResource Include="FilteredCommands.resx">
       <DependentUpon>FilteredCommands.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackageProblemRenderer.resx">
+      <DependentUpon>PackageProblemRenderer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

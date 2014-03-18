@@ -47,6 +47,8 @@
       this.CommandTypesCheckedListBox = new System.Windows.Forms.CheckedListBox();
       this.DatabaseFiltersTab = new System.Windows.Forms.TabPage();
       this.DatabaseFilters = new System.Windows.Forms.CheckedListBox();
+      this.CustomFilters = new System.Windows.Forms.TabPage();
+      this.CustomFilterList = new System.Windows.Forms.CheckedListBox();
       this.StatusStrip = new System.Windows.Forms.StatusStrip();
       this.CommandsCount = new System.Windows.Forms.ToolStripStatusLabel();
       this.GeneralCommands = new System.Windows.Forms.ToolStripStatusLabel();
@@ -69,8 +71,7 @@
       this.label1 = new System.Windows.Forms.Label();
       this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-      this.CustomFilters = new System.Windows.Forms.TabPage();
-      this.CustomFilterList = new System.Windows.Forms.CheckedListBox();
+      this.problemsPanel = new System.Windows.Forms.Panel();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
@@ -84,6 +85,7 @@
       this.FilterTabControl.SuspendLayout();
       this.CommandTypesPage.SuspendLayout();
       this.DatabaseFiltersTab.SuspendLayout();
+      this.CustomFilters.SuspendLayout();
       this.StatusStrip.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
@@ -94,7 +96,6 @@
       this.PackageOverview.SuspendLayout();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).BeginInit();
-      this.CustomFilters.SuspendLayout();
       this.SuspendLayout();
       // 
       // splitContainer1
@@ -310,6 +311,27 @@
       this.DatabaseFilters.Size = new System.Drawing.Size(334, 127);
       this.DatabaseFilters.TabIndex = 0;
       // 
+      // CustomFilters
+      // 
+      this.CustomFilters.Controls.Add(this.CustomFilterList);
+      this.CustomFilters.Location = new System.Drawing.Point(4, 22);
+      this.CustomFilters.Name = "CustomFilters";
+      this.CustomFilters.Size = new System.Drawing.Size(340, 133);
+      this.CustomFilters.TabIndex = 2;
+      this.CustomFilters.Text = "Custom";
+      this.CustomFilters.UseVisualStyleBackColor = true;
+      // 
+      // CustomFilterList
+      // 
+      this.CustomFilterList.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.CustomFilterList.FormattingEnabled = true;
+      this.CustomFilterList.Items.AddRange(new object[] {
+            "Filter Translation changes"});
+      this.CustomFilterList.Location = new System.Drawing.Point(0, 0);
+      this.CustomFilterList.Name = "CustomFilterList";
+      this.CustomFilterList.Size = new System.Drawing.Size(340, 133);
+      this.CustomFilterList.TabIndex = 0;
+      // 
       // StatusStrip
       // 
       this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -435,21 +457,23 @@
       this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+      this.panel1.Controls.Add(this.problemsPanel);
       this.panel1.Controls.Add(this.label5);
-      this.panel1.Location = new System.Drawing.Point(3, 244);
+      this.panel1.Location = new System.Drawing.Point(3, 282);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(944, 407);
+      this.panel1.Size = new System.Drawing.Size(944, 369);
       this.panel1.TabIndex = 7;
       // 
       // label5
       // 
       this.label5.AutoSize = true;
+      this.label5.Dock = System.Windows.Forms.DockStyle.Top;
       this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.label5.Location = new System.Drawing.Point(3, 11);
+      this.label5.Location = new System.Drawing.Point(0, 0);
       this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(212, 20);
+      this.label5.Size = new System.Drawing.Size(217, 20);
       this.label5.TabIndex = 0;
-      this.label5.Text = "List of potential problems";
+      this.label5.Text = "List of potential problems:";
       // 
       // CommandsOverview
       // 
@@ -470,7 +494,7 @@
       this.CommandsOverview.Name = "CommandsOverview";
       this.CommandsOverview.ReadOnly = true;
       this.CommandsOverview.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-      this.CommandsOverview.Size = new System.Drawing.Size(917, 150);
+      this.CommandsOverview.Size = new System.Drawing.Size(917, 141);
       this.CommandsOverview.TabIndex = 6;
       // 
       // TotalCommandsCount
@@ -534,26 +558,13 @@
       // 
       this.openFileDialog1.FileName = "openFileDialog1";
       // 
-      // CustomFilters
+      // problemsPanel
       // 
-      this.CustomFilters.Controls.Add(this.CustomFilterList);
-      this.CustomFilters.Location = new System.Drawing.Point(4, 22);
-      this.CustomFilters.Name = "CustomFilters";
-      this.CustomFilters.Size = new System.Drawing.Size(340, 133);
-      this.CustomFilters.TabIndex = 2;
-      this.CustomFilters.Text = "Custom";
-      this.CustomFilters.UseVisualStyleBackColor = true;
-      // 
-      // CustomFilterList
-      // 
-      this.CustomFilterList.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.CustomFilterList.FormattingEnabled = true;
-      this.CustomFilterList.Items.AddRange(new object[] {
-            "Filter Translation changes"});
-      this.CustomFilterList.Location = new System.Drawing.Point(0, 0);
-      this.CustomFilterList.Name = "CustomFilterList";
-      this.CustomFilterList.Size = new System.Drawing.Size(340, 133);
-      this.CustomFilterList.TabIndex = 0;
+      this.problemsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.problemsPanel.Location = new System.Drawing.Point(0, 20);
+      this.problemsPanel.Name = "problemsPanel";
+      this.problemsPanel.Size = new System.Drawing.Size(944, 349);
+      this.problemsPanel.TabIndex = 1;
       // 
       // MainForm
       // 
@@ -579,6 +590,7 @@
       this.FilterTabControl.ResumeLayout(false);
       this.CommandTypesPage.ResumeLayout(false);
       this.DatabaseFiltersTab.ResumeLayout(false);
+      this.CustomFilters.ResumeLayout(false);
       this.StatusStrip.ResumeLayout(false);
       this.StatusStrip.PerformLayout();
       this.tabControl1.ResumeLayout(false);
@@ -592,7 +604,6 @@
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.CommandsOverview)).EndInit();
-      this.CustomFilters.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -642,6 +653,7 @@
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.TabPage CustomFilters;
     private System.Windows.Forms.CheckedListBox CustomFilterList;
+    private System.Windows.Forms.Panel problemsPanel;
 
   }
 }

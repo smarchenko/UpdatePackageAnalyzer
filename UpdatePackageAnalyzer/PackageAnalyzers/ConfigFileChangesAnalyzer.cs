@@ -12,21 +12,21 @@ namespace UpdatePackageAnalyzer.PackageAnalyzers
       IList<ProblemDescriptor> result = new List<ProblemDescriptor>();
       var descriptor = new ProblemDescriptor()
                          {
-                           LongDescription = "Commands for changing configuration files are not usually allowed unless these files are not likely to be modified. In any case documentation should describe the way how to handle conflitcs related to these files, please check.",
+                           LongDescription = "Commands for changing, adding or removing configuration files are not usually allowed unless these files are not likely to be modified. In any case documentation should describe the way how to handle conflitcs related to these files, please check.",
                            ShortDescription = "Configuration File changes",
                            Commands = new List<ICommand>()
                          };
       foreach (var command in commands)
       {
-        var changeFileCommand = command as ChangeFileCommand;
-        if (changeFileCommand == null)
+        var baseFileCommand = command as BaseFileCommand;
+        if (baseFileCommand == null)
         {
           continue;
         }
 
-        string path = changeFileCommand.FilePath.ToLowerInvariant().Trim();
+        string path = baseFileCommand.FilePath.ToLowerInvariant().Trim();
 
-        if (path.EndsWith(".config") || path.EndsWith(".config.example"))
+        if (path.EndsWith(".config") || path.EndsWith(".config.example") || path.EndsWith(".config.disabled"))
         {
           descriptor.Commands.Add(command);
         }
