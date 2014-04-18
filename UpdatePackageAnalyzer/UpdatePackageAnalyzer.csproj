@@ -84,6 +84,7 @@
     <Compile Include="PackageAnalyzers\LicenseFileChangesAnalyzer.cs" />
     <Compile Include="PackageAnalyzers\PackageAnalyzer.cs" />
     <Compile Include="PackageAnalyzers\ProblemDescriptor.cs" />
+    <Compile Include="PackageAnalyzers\RadControlsChangesAnalyzer.cs" />
     <Compile Include="PackageProblemRenderer.cs">
       <SubType>UserControl</SubType>
     </Compile>

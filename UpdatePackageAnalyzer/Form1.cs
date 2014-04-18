@@ -57,6 +57,7 @@ namespace UpdatePackageAnalyzer
     {
       this.analyzers = new List<PackageAnalyzer>();
       this.analyzers.Add(new LicenseFileChangesAnalyzer());
+      this.analyzers.Add(new RadControlsChangesAnalyzer());
       this.analyzers.Add(new ConfigFileChangesAnalyzer());
     }
 
