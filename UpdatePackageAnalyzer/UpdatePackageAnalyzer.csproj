@@ -81,6 +81,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="PackageAnalyzers\ConfigFileChangesAnalyzer.cs" />
+    <Compile Include="PackageAnalyzers\LicenseFileChangesAnalyzer.cs" />
     <Compile Include="PackageAnalyzers\PackageAnalyzer.cs" />
     <Compile Include="PackageAnalyzers\ProblemDescriptor.cs" />
     <Compile Include="PackageProblemRenderer.cs">

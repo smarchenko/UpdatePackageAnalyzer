@@ -56,6 +56,7 @@ namespace UpdatePackageAnalyzer
     protected void LoadPackageAnalyzers(IList<ICommand> commands)
     {
       this.analyzers = new List<PackageAnalyzer>();
+      this.analyzers.Add(new LicenseFileChangesAnalyzer());
       this.analyzers.Add(new ConfigFileChangesAnalyzer());
     }
 
