@@ -15,7 +15,7 @@ namespace UpdatePackageAnalyzer.PackageAnalyzers
       IList<ProblemDescriptor> result = new List<ProblemDescriptor>();
       var descriptor = new ProblemDescriptor()
       {
-        LongDescription = "From time to time RedControls are not installed during the build. In mosr cases it is related to using DEV channel.",
+        LongDescription = "From time to time RedControls are not installed during the build. In most cases it is related to using DEV channel.",
         ShortDescription = "Rad Controls have been removed",
         Commands = new List<ICommand>()
       };
