@@ -61,6 +61,7 @@
       this.ApplyChanges = new System.Windows.Forms.Button();
       this.PackageOverview = new System.Windows.Forms.TabPage();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.problemsPanel = new System.Windows.Forms.Panel();
       this.label5 = new System.Windows.Forms.Label();
       this.CommandsOverview = new System.Windows.Forms.DataGridView();
       this.TotalCommandsCount = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@
       this.label1 = new System.Windows.Forms.Label();
       this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-      this.problemsPanel = new System.Windows.Forms.Panel();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
@@ -464,6 +464,15 @@
       this.panel1.Size = new System.Drawing.Size(944, 369);
       this.panel1.TabIndex = 7;
       // 
+      // problemsPanel
+      // 
+      this.problemsPanel.AutoScroll = true;
+      this.problemsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.problemsPanel.Location = new System.Drawing.Point(0, 20);
+      this.problemsPanel.Name = "problemsPanel";
+      this.problemsPanel.Size = new System.Drawing.Size(944, 349);
+      this.problemsPanel.TabIndex = 1;
+      // 
       // label5
       // 
       this.label5.AutoSize = true;
@@ -557,14 +566,6 @@
       // openFileDialog1
       // 
       this.openFileDialog1.FileName = "openFileDialog1";
-      // 
-      // problemsPanel
-      // 
-      this.problemsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.problemsPanel.Location = new System.Drawing.Point(0, 20);
-      this.problemsPanel.Name = "problemsPanel";
-      this.problemsPanel.Size = new System.Drawing.Size(944, 349);
-      this.problemsPanel.TabIndex = 1;
       // 
       // MainForm
       // 
