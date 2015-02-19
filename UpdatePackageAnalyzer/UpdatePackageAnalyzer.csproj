@@ -68,6 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomCommandFilters\ChangeStandardValuesReferenceFilter.cs" />
+    <Compile Include="CustomCommandFilters\DictionaryCommandFilter.cs" />
+    <Compile Include="CustomCommandFilters\RecreatedStandardValuesFilter.cs" />
+    <Compile Include="CustomCommandFilters\TranslationChangeFilter.cs" />
     <Compile Include="FilteredCommands.cs">
       <SubType>Form</SubType>
     </Compile>

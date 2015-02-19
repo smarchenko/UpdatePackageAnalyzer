@@ -29,6 +29,7 @@ namespace UpdatePackageAnalyzer
   using Sitecore.Update.Interfaces;
   using Sitecore.Update.Utils;
 
+  using UpdatePackageAnalyzer.CustomCommandFilters;
   using UpdatePackageAnalyzer.PackageAnalyzers;
 
   public partial class MainForm : Form
@@ -66,6 +67,8 @@ namespace UpdatePackageAnalyzer
       this.customFilters = new Dictionary<string, ICommandFilter>();
       this.customFilters.Add("Filter Translation changes", new TranslationChangeFilter());
       this.customFilters.Add("Filter Dictionary commands", new DictionaryCommandFilter());
+      this.customFilters.Add("Filter Recreation Standard Values", new RecreatedStandardValuesFilter(commands));
+      this.customFilters.Add("Filter changes in Teplate Standard Values reference", new ChangeStandardValuesReferenceFilter());
 
       this.CustomFilterList.Items.Clear();
       foreach (string text in this.customFilters.Keys)
@@ -198,65 +201,6 @@ namespace UpdatePackageAnalyzer
       }
 
       return command;
-    }
-
-    private class DictionaryCommandFilter : ICommandFilter
-    {
-      public ICommand FilterCommand(ICommand command)
-      {
-        if (!(command is BaseItemCommand))
-        {
-          return command;
-        }
-
-        var itemCommand = command as BaseItemCommand;
-        if (itemCommand.ItemPath.StartsWith(
-          "/sitecore/system/Dictionary/", StringComparison.InvariantCultureIgnoreCase))
-        {
-          return null;
-        }
-
-        return command;
-      }
-
-      public ICommandFilter Clone()
-      {
-        return new DictionaryCommandFilter();
-      }
-    }
-
-    private class TranslationChangeFilter : ICommandFilter
-    {
-      public ICommand FilterCommand(ICommand command)
-      {
-        if (!(command is ChangeItemCommand))
-        {
-          return command;
-        }
-
-        var changeItemCommand = command as ChangeItemCommand;
-
-        foreach (var c in changeItemCommand.Commands)
-        {
-          if (!(c is AddVersionCommand))
-          {
-            return command;
-          }
-
-          var changeVersionCommand = c as AddVersionCommand;
-          if (string.Compare(changeVersionCommand.Language, "en", true) == 0)
-          {
-            return command;
-          }
-        }
-
-        return null;
-      }
-
-      public ICommandFilter Clone()
-      {
-        return new TranslationChangeFilter();
-      }
     }
 
     protected void LoadCommands(IList<ICommand> commands, bool treeView)
