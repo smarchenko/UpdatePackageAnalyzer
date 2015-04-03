@@ -21,16 +21,45 @@ namespace UpdatePackageAnalyzer.CustomCommandFilters
 
       foreach (var c in changeItemCommand.Commands)
       {
-        if (!(c is AddVersionCommand))
+        if (c is BaseFieldCommand)
         {
           return command;
         }
 
-        var changeVersionCommand = c as AddVersionCommand;
-        if (string.Compare(changeVersionCommand.Language, "en", true) == 0)
+        if (c is ChangeVersionCommand)
         {
-          return command;
+          var changeVersion = c as ChangeVersionCommand;
+          if (string.Compare(changeVersion.Language, "en", StringComparison.InvariantCultureIgnoreCase) == 0)
+          {
+            return command;
+          }
+
+          continue;
         }
+
+        if (c is DeleteVersionCommand)
+        {
+          var deleteVersion = c as DeleteVersionCommand;
+          if (string.Compare(deleteVersion.Language, "en", StringComparison.InvariantCultureIgnoreCase) == 0)
+          {
+            return command;
+          }
+
+          continue;
+        }
+
+        if (c is AddVersionCommand)
+        {
+          var changeVersionCommand = c as AddVersionCommand;
+          if (string.Compare(changeVersionCommand.Language, "en", StringComparison.InvariantCultureIgnoreCase) == 0)
+          {
+            return command;
+          }
+
+          continue;
+        }
+        
+        return command;
       }
 
       return null;
