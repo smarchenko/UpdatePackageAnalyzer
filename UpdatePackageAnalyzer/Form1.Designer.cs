@@ -72,6 +72,8 @@
       this.label1 = new System.Windows.Forms.Label();
       this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+      this.compareToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
@@ -152,7 +154,8 @@
       // 
       this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Load,
-            this.editReadMeToolStripMenuItem});
+            this.editReadMeToolStripMenuItem,
+            this.compareToToolStripMenuItem});
       this.MenuStrip.Location = new System.Drawing.Point(0, 0);
       this.MenuStrip.Name = "MenuStrip";
       this.MenuStrip.Size = new System.Drawing.Size(1379, 24);
@@ -173,20 +176,20 @@
             this.loadDiffToolStripMenuItem1,
             this.loadPackageToolStripMenuItem});
       this.loadDiffToolStripMenuItem.Name = "loadDiffToolStripMenuItem";
-      this.loadDiffToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+      this.loadDiffToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.loadDiffToolStripMenuItem.Text = "Load";
       // 
       // loadDiffToolStripMenuItem1
       // 
       this.loadDiffToolStripMenuItem1.Name = "loadDiffToolStripMenuItem1";
-      this.loadDiffToolStripMenuItem1.Size = new System.Drawing.Size(147, 22);
+      this.loadDiffToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
       this.loadDiffToolStripMenuItem1.Text = "Load Diff";
       this.loadDiffToolStripMenuItem1.Click += new System.EventHandler(this.loadDiffToolStripMenuItem1_Click);
       // 
       // loadPackageToolStripMenuItem
       // 
       this.loadPackageToolStripMenuItem.Name = "loadPackageToolStripMenuItem";
-      this.loadPackageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+      this.loadPackageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.loadPackageToolStripMenuItem.Text = "Load Package";
       this.loadPackageToolStripMenuItem.Click += new System.EventHandler(this.loadPackageToolStripMenuItem_Click);
       // 
@@ -567,6 +570,19 @@
       // 
       this.openFileDialog1.FileName = "openFileDialog1";
       // 
+      // compareToToolStripMenuItem
+      // 
+      this.compareToToolStripMenuItem.Enabled = false;
+      this.compareToToolStripMenuItem.Name = "compareToToolStripMenuItem";
+      this.compareToToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+      this.compareToToolStripMenuItem.Text = "Compare To";
+      this.compareToToolStripMenuItem.Click += new System.EventHandler(this.compareToToolStripMenuItem_Click);
+      // 
+      // openFileDialog2
+      // 
+      this.openFileDialog2.DefaultExt = "update";
+      this.openFileDialog2.FileName = "openFileDialog2";
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -655,6 +671,8 @@
     private System.Windows.Forms.TabPage CustomFilters;
     private System.Windows.Forms.CheckedListBox CustomFilterList;
     private System.Windows.Forms.Panel problemsPanel;
+    private System.Windows.Forms.ToolStripMenuItem compareToToolStripMenuItem;
+    private System.Windows.Forms.OpenFileDialog openFileDialog2;
 
   }
 }

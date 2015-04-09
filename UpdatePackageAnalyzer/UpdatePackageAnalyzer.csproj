@@ -36,18 +36,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mkupdatepackage, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\temp\Update Package\UPT\mkupdatepackage.exe</HintPath>
+    <Reference Include="mkupdatepackage">
+      <HintPath>components\mkupdatepackage.exe</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Kernel, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Sitecore.Logging, Version=1.2.0.30715, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Kernel, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Sitecore Development\Trunk\Tools\Update Package Tools\Sitecore.Update.Console\bin\Sitecore.Logging.dll</HintPath>
+      <HintPath>components\Sitecore.Kernel.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Update, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\temp\Update Package\UPT\Sitecore.Update.dll</HintPath>
+    <Reference Include="Sitecore.Logging">
+      <HintPath>components\Sitecore.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Update">
+      <HintPath>components\Sitecore.Update.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -68,10 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandSerializer.cs" />
     <Compile Include="CustomCommandFilters\ChangeStandardValuesReferenceFilter.cs" />
     <Compile Include="CustomCommandFilters\DictionaryCommandFilter.cs" />
     <Compile Include="CustomCommandFilters\RecreatedStandardValuesFilter.cs" />
     <Compile Include="CustomCommandFilters\TranslationChangeFilter.cs" />
+    <Compile Include="DiffLoader.cs" />
     <Compile Include="FilteredCommands.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +91,12 @@
     <Compile Include="PackageAnalyzers\PackageAnalyzer.cs" />
     <Compile Include="PackageAnalyzers\ProblemDescriptor.cs" />
     <Compile Include="PackageAnalyzers\RadControlsChangesAnalyzer.cs" />
+    <Compile Include="PackageComparer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PackageComparer.Designer.cs">
+      <DependentUpon>PackageComparer.cs</DependentUpon>
+    </Compile>
     <Compile Include="PackageProblemRenderer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackageComparer.resx">
+      <DependentUpon>PackageComparer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PackageProblemRenderer.resx">
       <DependentUpon>PackageProblemRenderer.cs</DependentUpon>
