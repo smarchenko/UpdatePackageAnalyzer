@@ -479,7 +479,7 @@ namespace UpdatePackageAnalyzer
         CommandSerializer.Serialize(sourcePath, command.LeftCommand);
         CommandSerializer.Serialize(targetPath, command.RightCommand);
         
-        Process.Start("winmergeU.exe", sourcePath + " " + targetPath);
+        Process.Start("winmergeU.exe", "\"" + sourcePath + "\"" + " " + "\"" + targetPath + "\"");
       }
     }
 
